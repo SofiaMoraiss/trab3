@@ -15,6 +15,12 @@ int main(int argc, char *argv[]) {
     
     graph_readStopwords(g, argv[1]);
 
+    graph_readIndex(g, argv[1]);
+
+    graph_readGraph(g, argv[1]);
+
+    testa_graph(g);
+
     graph_destroy(g);
 
     return 0;

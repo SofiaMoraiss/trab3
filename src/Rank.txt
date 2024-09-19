@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "../include/Rank.h"
+#include "../include/Page.h"
+
+
+struct rank {
+    // int n_out;
+    // double rank;
+    // char** outs;
+    // char** ins;
+};
+
+Page init_page(int n_out, double rank) {
+    Page p = (Page)malloc(sizeof(struct page));
+
+    p->n_out = n_out;
+    p->rank = rank;
+
+    p->outs = (char**)malloc(n_out * sizeof(char*));
+    p->ins = NULL;
+
+    return p;
+}
+
+void destroy_page(struct page* p) {
+    if (!p) return;
+
+    for (int i = 0; i < p->n_out; i++) {
+        free(p->outs[i]);
+    }
+    free(p->outs);
+
+    if (p->ins) {
+        for (int i = 0; p->ins[i] != NULL; i++) {
+            free(p->ins[i]);
+        }
+        free(p->ins);
+    }
+
+    free(p);
+}
+

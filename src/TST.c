@@ -4,6 +4,8 @@
 
 #include "../include/TST.h"
 
+#define MAX_LENGHT 1000
+
 struct node {
     void *val;
     char c;
@@ -73,14 +75,36 @@ void* TST_search(TST t, const char* key) {
     }
 }
 
-void destroy_TST(TST t, destroy_value_fn destroy_value) {
+char *TST_getSingleWord(TST tree) {
+    if (!tree) {
+        return NULL;
+    }
+
+    TST node = tree;
+    char buffer[MAX_LENGHT];
+    int index = 0;
+
+    while (node) {
+        buffer[index++] = node->c;
+        if (node->val != NULL) {
+            buffer[index] = '\0';
+            return strdup(buffer);
+        }
+        node = node->m;
+    }
+
+    return NULL;
+}
+
+
+void TST_destroy(TST t, destroy_value_fn destroy_value) {
     if (t == NULL) {
         return;
     }
 
-    destroy_TST(t->l, destroy_value);
-    destroy_TST(t->m, destroy_value);
-    destroy_TST(t->r, destroy_value);
+    TST_destroy(t->l, destroy_value);
+    TST_destroy(t->m, destroy_value);
+    TST_destroy(t->r, destroy_value);
 
     if (t->val != NULL && destroy_value != NULL) {
         destroy_value(t->val);

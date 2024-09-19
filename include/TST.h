@@ -15,6 +15,7 @@ TST create_node(char c);
 TST TST_insert(TST t, const char* key, void *val, substitutes_value_fn subs_value);
 
 void* TST_search(TST t, const char* key);
-void destroy_TST(TST t, destroy_value_fn destroy_value);
+char* TST_getSingleWord(TST tree);
+void TST_destroy(TST t, destroy_value_fn destroy_value);
 
 #endif

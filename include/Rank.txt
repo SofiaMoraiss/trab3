@@ -1,0 +1,47 @@
+#ifndef R_H
+#define R_H
+
+
+typedef struct rank * Rank;
+
+Page init_page(int n_out, double rank);
+
+void destroy_page(struct page* p);
+
+
+#endif
+
+char *TST_getSingleWord(TST tree) {
+    if (!tree) {
+        return NULL;
+    }
+
+    TST node = tree;
+    char buffer[MAX_LENGHT];
+    int index = 0;
+
+    while (node) {
+        buffer[index++] = node->c;
+        if (node->val != NULL) {
+            buffer[index] = '\0';
+            return strdup(buffer);
+        }
+        node = node->m;
+    }
+
+    return NULL;
+}
+
+void subs_TST_int1(void *old, void *new) {
+
+    TST old_tree = (TST)old;
+    
+    char *new_key = TST_getSingleWord(new);
+
+    int *val = (int *)malloc(sizeof(int));
+    *val = 1;
+
+    old_tree = TST_insert(old_tree, (const char *)new_key, val, subs_int);
+
+    TST_destroy(new, destroy_int_value);
+}
