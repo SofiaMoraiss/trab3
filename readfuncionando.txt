@@ -1,0 +1,27 @@
+void graph_readStopwords(Graph g, char *path) {
+    char file_path[256];
+    snprintf(file_path, sizeof(file_path), "%sstopwords.txt", path);
+
+    FILE *file = fopen(file_path, "r");
+    if (file == NULL) {
+        printf("Couldn't open stopwords.txt\n");
+        graph_destroy(g);
+        exit(1);
+    }
+
+    char *Linha = NULL;
+    size_t len = 0;
+    ssize_t read;
+
+    while ((read = getline(&Linha, &len, file)) != -1) {
+        if (Linha[read - 1] == '\n') {
+            Linha[read - 1] = '\0';
+        }
+        printf("%s  ", Linha);
+        //graph_addStopword(g, Linha);
+    }
+    printf("\n");
+
+    free(Linha);
+    fclose(file);
+}

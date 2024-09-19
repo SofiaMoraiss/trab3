@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "../include/TST.h"
+#include "../include/Graph.h"
+
+
+void destroy_int_value(void *val) {
+    if (val!=NULL){
+        free(val);
+        val = NULL;
+    }
+}
+
+void destroy_TST_value(void *val) {
+    destroy_TST((TST)val, destroy_int_value);
+}
+
+void subs_val(void *old, void *new) {
+
+}
+
+
+
+int main() {
+    TST root = NULL;
+    const char key1[] = "hello";
+    const char key2[] = "world";
+
+    int *val1 = (int *)malloc(sizeof(int));
+    *val1 = 1;
+    // int *val3 = (int *)malloc(sizeof(int));
+    // *val3 = 3;
+    TST val2 = NULL;
+    val2 = TST_insert(val2, "nested", val1, subs_val);
+
+   // root = TST_insert(root, key1, val1, subs_val);
+    root = TST_insert(root, key1, val2, subs_val);
+
+    TST found_tree = (TST)TST_search(root, key1);
+    if (found_tree != NULL) {
+        printf("Valor encontrado para '%s'\n", key1);
+    } else {
+        printf("Valor não encontrado para '%s'\n", key1);
+    }
+
+    //destroy_int_value(val3);
+
+    destroy_TST(root, destroy_TST_value);
+
+    return 0;
+}
