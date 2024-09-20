@@ -13,7 +13,7 @@ all: src/main.c src/Graph.c src/TST.c src/LinkedList.c src/Page.c
 	@gcc -o trab3 $(COMPILED)/main.o $(COMPILED)/Graph.o $(COMPILED)/TST.o $(COMPILED)/LinkedList.o $(COMPILED)/Page.o
 
 run:
-	./trab3 docs/
+	./trab3 ..luiz-sample-large/
 
 run_N10:
 	./trab3 in/N10.txt $(OUT)/N10.txt 
@@ -28,7 +28,7 @@ run_N10000:
 	./trab2 in/N10000.txt $(OUT)/N10000.txt
 	
 val:
-	valgrind --leak-check=full --show-leak-kinds=all -s ./trab3 docs/ > valgrind_output.txt 2>&1
+	valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all -s ./trab3 docs/ > valgrind_output.txt 2>&1
 
 valgrind_N10:
 	valgrind --leak-check=full --show-leak-kinds=all ./trab2 in/N10.txt $(OUT)/N10.txt

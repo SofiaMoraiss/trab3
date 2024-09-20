@@ -3,6 +3,7 @@
 #include <string.h>
 #include "../include/TST.h"
 #include "../include/Graph.h"
+#include <unistd.h>
 
 int main(int argc, char *argv[]) {
 
@@ -19,7 +20,14 @@ int main(int argc, char *argv[]) {
 
     graph_readGraph(g, argv[1]);
 
-    testa_graph(g);
+
+    graph_RankTotal(g);
+
+    graph_sort_pages_by_rank(g);
+
+    //graph_print_pages(g);
+
+    graph_search_pages_in_common(g);
 
     graph_destroy(g);
 

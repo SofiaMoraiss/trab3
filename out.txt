@@ -1,17 +1,31 @@
+a.txt  abacate fruta boa b.txt  abacate fruta ruim d.txt  odeio abacate e.txt  maca melhor abacate c.txt  gosto abacate abacaxi ruim 
+ARQUIVO  'c.txt' , numero de ins: 0, 
+pages: c.txt b.txt 
+pages: 
 
-a.txt  
-Reading: docs/pages/a.txt:
-abacate fruta boa 
-b.txt  
-Reading: docs/pages/b.txt:
-abacate fruta ruim 
-d.txt  
-Reading: docs/pages/d.txt:
-odeio abacate 
-e.txt  
-Reading: docs/pages/e.txt:
-maca melhor abacate 
-c.txt  
-Reading: docs/pages/c.txt:
-gosto abacate abacaxi ruim 
+struct node {
+    char *str;
+    Node next;
+};
 
+struct linked_list {
+    Node head;
+};
+
+LinkedList init_list() {
+    LinkedList list = (LinkedList ) malloc(sizeof(struct linked_list));
+    list->head = NULL;
+    return list;
+}
+
+void destroy_list(LinkedList list) {
+    Node current = list->head;
+    Node next;
+    while (current != NULL) {
+        next = current->next;
+        free(current->str);
+        free(current);
+        current = next;
+    }
+    free(list);
+}

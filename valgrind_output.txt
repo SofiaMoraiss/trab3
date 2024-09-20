@@ -1,23 +1,25 @@
-==3202== Memcheck, a memory error detector
-==3202== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==3202== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==3202== Command: ./trab3 docs/
-==3202== 
-
-a.txt  abacate fruta boa 
-b.txt  abacate fruta ruim 
-d.txt  odeio abacate 
-e.txt  maca melhor abacate 
-c.txt  gosto abacate abacaxi ruim 
-
-a.txt : 0.200000, b.txt : 0.200000, c.txt : 0.200000, d.txt : 0.200000, e.txt : 0.200000, 
-
------------------------
-==3202== 
-==3202== HEAP SUMMARY:
-==3202==     in use at exit: 0 bytes in 0 blocks
-==3202==   total heap usage: 282 allocs, 282 frees, 49,564 bytes allocated
-==3202== 
-==3202== All heap blocks were freed -- no leaks are possible
-==3202== 
-==3202== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==22265== Memcheck, a memory error detector
+==22265== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==22265== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==22265== Command: ./trab3 docs/
+==22265== 
+search:abacate 
+pages:c.txt b.txt d.txt e.txt a.txt 
+pr:0.740587 0.095413 0.066957 0.066957 0.030000 
+search:ruim abacate 
+pages:c.txt b.txt 
+pr:0.740587 0.095413 
+search:liq 
+pages:
+pr:
+search:x 
+pages:
+pr:
+==22265== 
+==22265== HEAP SUMMARY:
+==22265==     in use at exit: 0 bytes in 0 blocks
+==22265==   total heap usage: 362 allocs, 362 frees, 51,789 bytes allocated
+==22265== 
+==22265== All heap blocks were freed -- no leaks are possible
+==22265== 
+==22265== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

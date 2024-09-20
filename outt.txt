@@ -1,0 +1,2 @@
+./trab3 ..luiz-sample-large/
+Couldn't open ..luiz-sample-large/stopwords.txt
